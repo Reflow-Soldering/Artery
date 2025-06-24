@@ -3,11 +3,11 @@
 <title>Static Call Graph - [.\Artery_Practice.axf]</title></head>
 <body><HR>
 <H1>Static Call Graph for image .\Artery_Practice.axf</H1><HR>
-<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 6230001: Last Updated: Mon Jun 23 15:57:06 2025
+<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 6230001: Last Updated: Tue Jun 24 11:09:47 2025
 <BR><P>
-<H3>Maximum Stack Usage =        196 bytes + Unknown(Functions without stacksize, Cycles, Untraceable Function Pointers)</H3><H3>
+<H3>Maximum Stack Usage =        200 bytes + Unknown(Functions without stacksize, Cycles, Untraceable Function Pointers)</H3><H3>
 Call chain for Maximum Stack Depth:</H3>
-DMA1_Channel1_IRQHandler &rArr; i2c_dma_tx_irq_handler &rArr; i2c_dma_tx_rx_irq_handler &rArr; i2c_dma_config &rArr; dma_interrupt_enable
+__rt_entry_main &rArr; main &rArr; system_clock_config &rArr; system_core_clock_update &rArr; __aeabi_uldivmod
 <P>
 <H3>
 Functions with no stack information
@@ -254,7 +254,7 @@ Global Symbols
 <P><STRONG><a name="[de]"></a>__rt_entry_postsh_1</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, __rtentry2.o(.ARM.Collect$$rtentry$$00000009))
 
 <P><STRONG><a name="[76]"></a>__rt_entry_main</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, __rtentry2.o(.ARM.Collect$$rtentry$$0000000D))
-<BR><BR>[Stack]<UL><LI>Max Depth = 192 + Unknown Stack Size
+<BR><BR>[Stack]<UL><LI>Max Depth = 200 + Unknown Stack Size
 <LI>Call Chain = __rt_entry_main &rArr; main &rArr; system_clock_config &rArr; system_core_clock_update &rArr; __aeabi_uldivmod
 </UL>
 <BR>[Calls]<UL><LI><a href="#[77]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
@@ -626,7 +626,7 @@ Global Symbols
 <P><STRONG><a name="[7]"></a>DebugMon_Handler</STRONG> (Thumb, 2 bytes, Stack size 0 bytes, at32f435_437_int.o(.text.DebugMon_Handler))
 <BR>[Address Reference Count : 1]<UL><LI> startup_at32f435_437.o(RESET)
 </UL>
-<P><STRONG><a name="[10]"></a>EXINT0_IRQHandler</STRONG> (Thumb, 52 bytes, Stack size 8 bytes, main_gpio_int.o(.text.EXINT0_IRQHandler))
+<P><STRONG><a name="[10]"></a>EXINT0_IRQHandler</STRONG> (Thumb, 50 bytes, Stack size 8 bytes, main_gpio_int.o(.text.EXINT0_IRQHandler))
 <BR><BR>[Stack]<UL><LI>Max Depth = 16<LI>Call Chain = EXINT0_IRQHandler &rArr; gpio_input_data_bit_read
 </UL>
 <BR>[Calls]<UL><LI><a href="#[83]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;exint_flag_clear
@@ -634,7 +634,7 @@ Global Symbols
 </UL>
 <BR>[Address Reference Count : 1]<UL><LI> startup_at32f435_437.o(RESET)
 </UL>
-<P><STRONG><a name="[32]"></a>EXINT15_10_IRQHandler</STRONG> (Thumb, 58 bytes, Stack size 8 bytes, main_gpio_int.o(.text.EXINT15_10_IRQHandler))
+<P><STRONG><a name="[32]"></a>EXINT15_10_IRQHandler</STRONG> (Thumb, 56 bytes, Stack size 8 bytes, main_gpio_int.o(.text.EXINT15_10_IRQHandler))
 <BR><BR>[Stack]<UL><LI>Max Depth = 16<LI>Call Chain = EXINT15_10_IRQHandler &rArr; gpio_input_data_bit_read
 </UL>
 <BR>[Calls]<UL><LI><a href="#[83]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;exint_flag_clear
@@ -800,7 +800,7 @@ Global Symbols
 <LI><a href="#[8b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;i2c_dma_config
 </UL>
 
-<P><STRONG><a name="[a5]"></a>exint_default_para_init</STRONG> (Thumb, 28 bytes, Stack size 4 bytes, at32f435_437_exint.o(.text.exint_default_para_init))
+<P><STRONG><a name="[a6]"></a>exint_default_para_init</STRONG> (Thumb, 28 bytes, Stack size 4 bytes, at32f435_437_exint.o(.text.exint_default_para_init))
 <BR><BR>[Stack]<UL><LI>Max Depth = 4<LI>Call Chain = exint_default_para_init
 </UL>
 <BR>[Called By]<UL><LI><a href="#[77]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
@@ -820,7 +820,7 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[84]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;pca9555_irq_handler
 </UL>
 
-<P><STRONG><a name="[a6]"></a>exint_init</STRONG> (Thumb, 228 bytes, Stack size 8 bytes, at32f435_437_exint.o(.text.exint_init))
+<P><STRONG><a name="[a7]"></a>exint_init</STRONG> (Thumb, 228 bytes, Stack size 8 bytes, at32f435_437_exint.o(.text.exint_init))
 <BR><BR>[Stack]<UL><LI>Max Depth = 8<LI>Call Chain = exint_init
 </UL>
 <BR>[Called By]<UL><LI><a href="#[77]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
@@ -838,7 +838,7 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[77]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 </UL>
 
-<P><STRONG><a name="[a9]"></a>gpio_init</STRONG> (Thumb, 232 bytes, Stack size 12 bytes, at32f435_437_gpio.o(.text.gpio_init))
+<P><STRONG><a name="[a4]"></a>gpio_init</STRONG> (Thumb, 232 bytes, Stack size 12 bytes, at32f435_437_gpio.o(.text.gpio_init))
 <BR><BR>[Stack]<UL><LI>Max Depth = 12<LI>Call Chain = gpio_init
 </UL>
 <BR>[Called By]<UL><LI><a href="#[77]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
@@ -1072,17 +1072,17 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[9c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;i2c_start_transfer
 </UL>
 
-<P><STRONG><a name="[77]"></a>main</STRONG> (Thumb, 430 bytes, Stack size 72 bytes, main_gpio_int.o(.text.main))
-<BR><BR>[Stack]<UL><LI>Max Depth = 192<LI>Call Chain = main &rArr; system_clock_config &rArr; system_core_clock_update &rArr; __aeabi_uldivmod
+<P><STRONG><a name="[77]"></a>main</STRONG> (Thumb, 528 bytes, Stack size 80 bytes, main_gpio_int.o(.text.main))
+<BR><BR>[Stack]<UL><LI>Max Depth = 200<LI>Call Chain = main &rArr; system_clock_config &rArr; system_core_clock_update &rArr; __aeabi_uldivmod
 </UL>
 <BR>[Calls]<UL><LI><a href="#[ab]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;gpio_bits_reset
 <LI><a href="#[aa]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;gpio_bits_set
-<LI><a href="#[a9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;gpio_init
+<LI><a href="#[a9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;nvic_priority_group_config
 <LI><a href="#[a8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;nvic_irq_enable
-<LI><a href="#[a7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;nvic_priority_group_config
-<LI><a href="#[a6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;exint_init
-<LI><a href="#[a5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;exint_default_para_init
-<LI><a href="#[a4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;scfg_exint_line_config
+<LI><a href="#[a7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;exint_init
+<LI><a href="#[a6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;exint_default_para_init
+<LI><a href="#[a5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;scfg_exint_line_config
+<LI><a href="#[a4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;gpio_init
 <LI><a href="#[89]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;delay_init
 <LI><a href="#[a3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;crm_periph_clock_enable
 <LI><a href="#[a2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;system_clock_config
@@ -1101,7 +1101,7 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[77]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 </UL>
 
-<P><STRONG><a name="[a7]"></a>nvic_priority_group_config</STRONG> (Thumb, 20 bytes, Stack size 16 bytes, at32f435_437_misc.o(.text.nvic_priority_group_config))
+<P><STRONG><a name="[a9]"></a>nvic_priority_group_config</STRONG> (Thumb, 20 bytes, Stack size 16 bytes, at32f435_437_misc.o(.text.nvic_priority_group_config))
 <BR><BR>[Stack]<UL><LI>Max Depth = 28<LI>Call Chain = nvic_priority_group_config &rArr; __NVIC_SetPriorityGrouping
 </UL>
 <BR>[Calls]<UL><LI><a href="#[b0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__NVIC_SetPriorityGrouping
@@ -1118,7 +1118,7 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[13]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EXINT3_IRQHandler
 </UL>
 
-<P><STRONG><a name="[a4]"></a>scfg_exint_line_config</STRONG> (Thumb, 228 bytes, Stack size 12 bytes, at32f435_437_scfg.o(.text.scfg_exint_line_config))
+<P><STRONG><a name="[a5]"></a>scfg_exint_line_config</STRONG> (Thumb, 228 bytes, Stack size 12 bytes, at32f435_437_scfg.o(.text.scfg_exint_line_config))
 <BR><BR>[Stack]<UL><LI>Max Depth = 12<LI>Call Chain = scfg_exint_line_config
 </UL>
 <BR>[Called By]<UL><LI><a href="#[77]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
@@ -1195,7 +1195,7 @@ Local Symbols
 <P><STRONG><a name="[b0]"></a>__NVIC_SetPriorityGrouping</STRONG> (Thumb, 60 bytes, Stack size 12 bytes, at32f435_437_misc.o(.text.__NVIC_SetPriorityGrouping))
 <BR><BR>[Stack]<UL><LI>Max Depth = 12<LI>Call Chain = __NVIC_SetPriorityGrouping
 </UL>
-<BR>[Called By]<UL><LI><a href="#[a7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;nvic_priority_group_config
+<BR>[Called By]<UL><LI><a href="#[a9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;nvic_priority_group_config
 </UL>
 <P>
 <H3>
