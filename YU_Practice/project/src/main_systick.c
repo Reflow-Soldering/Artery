@@ -144,10 +144,6 @@ int main(void)
 	gpio_init(GPIOB, &gpio_init_struct);
 	
 
-
-  /* configure led */
-  //at32_led_init(LED2);
-
   while(1)
   {
   }
