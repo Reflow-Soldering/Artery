@@ -17,12 +17,10 @@
 #include "at32f435_437_clock.h"
 #include "at_surf_f437_board_delay.h"
 //#include "at32f435_437_conf.h"
-//#include "at_surf_f437_board_key.h"
-//#include "at_surf_f437_board_lcd.h"
 
 /*
-* 1. GPIO 버튼 초기화 한다. 
-*     GPIO 버튼은 GPIOA-0과 GPIOC-13이다. Input과 interrupt falling edge로 설정한다.
+* 1. LED 빨강 초기화
+*     전체 채널의
 * 2. GPIO RGB LED 초기화 한다.
 *     GPIO RGB는 각각 아래와 같다.
 *     RED -> GPIOB-10

@@ -26,6 +26,10 @@
 #include "at32f435_437_int.h"
 #include "at_surf_f437_board_joystick.h"
 
+//systick handler에 함수 추가해야함!
+//이거때문에 3시간 버림
+extern void systick_handler(void);
+
 /**
   * @brief  this function handles nmi exception.
   * @param  none
@@ -121,6 +125,7 @@ void PendSV_Handler(void)
   */
 void SysTick_Handler(void)
 {
+	 systick_handler();
 }
 
 /**
