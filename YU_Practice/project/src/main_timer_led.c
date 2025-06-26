@@ -16,7 +16,6 @@
 #include "at32f435_437.h"
 #include "at32f435_437_clock.h"
 #include "at_surf_f437_board_delay.h"
-//#include "at32f435_437_conf.h"
 
 /*
 * 1. LED ª°∞≠ √ ±‚»≠
