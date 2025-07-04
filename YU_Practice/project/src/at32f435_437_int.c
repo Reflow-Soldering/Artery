@@ -29,6 +29,21 @@
 //systick handler에 함수 추가해야함!
 //이거때문에 3시간 버림
 extern void systick_handler(void);
+uint8_t Tim_Int_Flag;
+
+
+/**
+  * @brief  this function handles TMR1 Overflow Interrupt
+  * @param  none
+  * @retval none
+  */
+void TMR1_OVF_TMR10_IRQHandler(void)
+{
+	Tim_Int_Flag = 1;
+	tmr_flag_clear(TMR1, TMR_OVF_FLAG);
+}
+
+
 
 /**
   * @brief  this function handles nmi exception.
@@ -125,7 +140,8 @@ void PendSV_Handler(void)
   */
 void SysTick_Handler(void)
 {
-	 systick_handler();
+	//If you program systick.c to SURF437, uncomment systick_handler();
+	 //systick_handler();
 }
 
 /**

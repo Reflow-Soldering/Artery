@@ -1,7 +1,7 @@
 --cpu=Cortex-M4.fp.sp
 ".\at32f435_437_clock.o"
 ".\at32f435_437_int.o"
-".\main_systick.o"
+".\main_timer_int_led.o"
 ".\at_surf_f437_board_buzz.o"
 ".\at_surf_f437_board_delay.o"
 ".\at_surf_f437_board_font.o"
