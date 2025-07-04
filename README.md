@@ -49,9 +49,21 @@
 
    레지스터 관련 내용은 주석으로 달았습니다. main문에서 확인하시길 바랍니다.
 
-6. Timer(파일명 : **main_timer_led.c**)
-
-    현재 작성 중입니다. 
-
-  
+6. Timer Polling(파일명 : **main_timer_led.c**)
+7. Timer Interrupt(파일명 : **main_timer_int_led.c**)
    
+   1초마다 빨강 LED가 On/Off되는 파일입니다. 완전히 1초가 되지 않습니다.
+
+   **288MHz로 계산기를 돌려서 진행했습니다. 엑셀파일 참조 바랍니다**
+
+   **6번**은 Overflow Interrupt Flag를 tmr_flag_get(TMR1, TMR_OVF_FLAG) 함수를 이용하여 확인합니다.
+
+   Set이 되었으면 GPIO 출력값을 읽어 On/Off 합니다.
+
+   **7번**은 Overflow Interrupt Flag가 직접 인터럽트로 동작하여 TMR1 Interrupt 함수로 넘어갑니다.
+
+   Set이 되었으면 내부적으로 TMR1_OVF_TMR10_IRQHandler로 넘어가서 Timer관련 Flag 변수와 Overflow Flag를 초기화합니다.
+
+   main에서는 Flag 변수를 확인하여 초기화 하고, GPIO상태를 확인하여 On/Off합니다.
+
+   솔직히 TMR1하고 TMR10이라고 왜 써져있는지 모르겠습니다. 같이 쓰는거려나...
