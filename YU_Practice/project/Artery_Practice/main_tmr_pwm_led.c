@@ -47,7 +47,7 @@ uint32_t PWM_Period = 64;
   * @brief  main program
   * @param  none
   * @retval none
-  */
+  *////
 
 int main(void)
 {

@@ -82,7 +82,7 @@ int main(void)
 
     //TMR3 CH3(PB0) configuration
     //timer3 초기화
-    // tmr_base_init
+    // tmr_base_init///
     tmr_base_init(TMR3,ScaleValue[Scale_Rising], 287 ); //(타이머, 피리어드, 프리스케일러 순서임)
 
 
