@@ -1,4 +1,4 @@
-./main_timer_led.o: ..\src\main_timer_led.c \
+./main_tmr_pwm_scale_sound.o: main_tmr_pwm_scale_sound.c \
   ..\..\libraries\cmsis\cm4\device_support\at32f435_437.h \
   ..\..\libraries\cmsis\cm4\core_support\core_cm4.h \
   ..\..\libraries\cmsis\cm4\device_support\system_at32f435_437.h \
