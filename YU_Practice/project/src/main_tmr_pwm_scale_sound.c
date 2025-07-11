@@ -45,91 +45,87 @@ uint8_t Scale_Rising = 0;
 int main(void)
 {
 
-		/* initial system clock */
-		system_clock_config();    //288MHz
+	/* initial system clock */
+	system_clock_config();    //288MHz
 
 
-		/* initialize delay */
-		delay_init();
+	/* initialize delay */
+	delay_init();
 
-		/* initialize key */
-    //1. 초기화
-    //LED Blue 및 TMR3리셋
+	/* initialize key */
+	//1. 초기화
+	//LED Blue 및 TMR3리셋
 
-    //구조체 생성
-    gpio_init_type gpio_init_struct;
-
-
-    //버스연결 - TMR3, PORTB -> GPIOB 0와 Timer3사용
-    crm_periph_clock_enable(CRM_GPIOB_PERIPH_CLOCK,TRUE);    //GPIOB
-    crm_periph_clock_enable(CRM_TMR3_PERIPH_CLOCK,TRUE);    //Timer 3 Bus
-
-    //GPIO초기화
-    gpio_init_struct.gpio_drive_strength = GPIO_DRIVE_STRENGTH_STRONGER;
-    gpio_init_struct.gpio_mode = GPIO_MODE_MUX;
-    gpio_init_struct.gpio_out_type = GPIO_OUTPUT_PUSH_PULL;
-    gpio_init_struct.gpio_pins = GPIO_PINS_0;
-    gpio_init_struct.gpio_pull = GPIO_PULL_NONE;
-
-    gpio_init(GPIOB, &gpio_init_struct);
-
-
-    //GPIO MUX 선택   -> TMR3 Ch2경우 MUX 3번
-    //GPIOB 포트의 0번핀, MUX 2번
-    gpio_pin_mux_config(GPIOB, GPIO_PINS_SOURCE0, GPIO_MUX_2);
-
-		
-
-    //TMR3 CH3(PB0) configuration
-    //timer3 초기화
-    // tmr_base_init///
-    tmr_base_init(TMR3,ScaleValue[Scale_Rising], 287 ); //(타이머, 피리어드, 프리스케일러 순서임)
+	//버스연결 - TMR3, PORTB -> GPIOB 0와 Timer3사용
+	crm_periph_clock_enable(CRM_GPIOB_PERIPH_CLOCK,TRUE);    //GPIOB Bus
+	crm_periph_clock_enable(CRM_TMR3_PERIPH_CLOCK,TRUE);    //Timer 3 Bus
+	
+	//구조체 생성 및 초기화 C99
+	//앞으로도 이렇게 작성 -> 가독성 증가
+	gpio_init_type io_gpio = 
+	{
+		.gpio_drive_strength = GPIO_DRIVE_STRENGTH_STRONGER,
+		.gpio_mode = GPIO_MODE_MUX,
+		.gpio_out_type = GPIO_OUTPUT_PUSH_PULL,
+		.gpio_pins = GPIO_PINS_0,
+		.gpio_pull = GPIO_PULL_NONE,
+	};
+	//Init
+	gpio_init(GPIOB, &io_gpio);
 
 
-    //Downcount Mode, TMR3
-    tmr_cnt_dir_set(TMR3,TMR_COUNT_DOWN);
-
-    //TMR3 no division
-    tmr_clock_source_div_set(TMR3, TMR_CLOCK_DIV1);
+	//GPIO MUX 선택   -> TMR3 Ch2경우 MUX 3번
+	//GPIOB 포트의 0번핀, MUX 2번
+	gpio_pin_mux_config(GPIOB, GPIO_PINS_SOURCE0, GPIO_MUX_2);
 
 
-    //TMR3 init
-    //reset to default
-    tmr_output_default_para_init(&tmr_output_clock_init_structure);
+	//TMR3 CH3(PB0) configuration
+	//timer3 초기화
+	// tmr_base_init///
+	tmr_base_init(TMR3,ScaleValue[Scale_Rising], 287 ); //(타이머, 피리어드, 프리스케일러 순서임)
 
-    //TMR3 init start
-    //Mode A Selected
-    tmr_output_clock_init_structure.oc_mode = TMR_OUTPUT_CONTROL_PWM_MODE_A;
-    //No Idle status
-    tmr_output_clock_init_structure.oc_idle_state = FALSE;
-    //Start Polarity HIgh
-    tmr_output_clock_init_structure.oc_polarity = TMR_OUTPUT_ACTIVE_LOW;
-    //Output(TMR3 CH2) Enable
-    tmr_output_clock_init_structure.oc_output_state = TRUE;
 
-    //configuration function TMR3, CH3
-    tmr_output_channel_config(TMR3,TMR_SELECT_CHANNEL_3,&tmr_output_clock_init_structure);
-		
+	//Downcount Mode, TMR3
+	tmr_cnt_dir_set(TMR3,TMR_COUNT_DOWN);
 
-    //count value set
-    tmr_channel_value_set(TMR3, TMR_SELECT_CHANNEL_3, ScaleValue[Scale_Rising]/2);
+	//TMR3 no division
+	tmr_clock_source_div_set(TMR3, TMR_CLOCK_DIV1);
+
+
+	//TMR3 init
+	//reset to default
+	tmr_output_default_para_init(&tmr_output_clock_init_structure);
+
+	//TMR3 init start
+	//Mode A Selected
+	tmr_output_clock_init_structure.oc_mode = TMR_OUTPUT_CONTROL_PWM_MODE_A;
+	//No Idle status
+	tmr_output_clock_init_structure.oc_idle_state = FALSE;
+	//Start Polarity HIgh
+	tmr_output_clock_init_structure.oc_polarity = TMR_OUTPUT_ACTIVE_LOW;
+	//Output(TMR3 CH2) Enable
+	tmr_output_clock_init_structure.oc_output_state = TRUE;
+
+	//configuration function TMR3, CH3
+	tmr_output_channel_config(TMR3,TMR_SELECT_CHANNEL_3,&tmr_output_clock_init_structure);
+
+
+	//count value set
+	tmr_channel_value_set(TMR3, TMR_SELECT_CHANNEL_3, ScaleValue[Scale_Rising]/2);
 	//	tmr_channel_value_set(TMR3, TMR_SELECT_CHANNEL_2, 0x4000);
 
-    //output auto reload
-    tmr_output_channel_buffer_enable(TMR3, TMR_SELECT_CHANNEL_3, TRUE);
-		//tmr_output_channel_buffer_enable(TMR3, TMR_SELECT_CHANNEL_2, TRUE);
+	//output auto reload
+	tmr_output_channel_buffer_enable(TMR3, TMR_SELECT_CHANNEL_3, TRUE);
+	//tmr_output_channel_buffer_enable(TMR3, TMR_SELECT_CHANNEL_2, TRUE);
 
-    //tmr3 buffer enable
-    tmr_period_buffer_enable(TMR3,TRUE);
+	//tmr3 buffer enable
+	tmr_period_buffer_enable(TMR3,TRUE);
 
-		//Use Counter enable
-    tmr_counter_enable(TMR3,TRUE);
+	//Use Counter enable
+	tmr_counter_enable(TMR3,TRUE);
 
-   
-
-
-    while(1)
-  {
+	while(1)
+	{
 		tmr_counter_enable(TMR3, TRUE);
 		delay_ms(1000);
 		tmr_counter_enable(TMR3, FALSE);
@@ -138,11 +134,11 @@ int main(void)
 		{
 			while(1)
 			{
+				
 			}
 		}
 		tmr_period_value_set(TMR3,ScaleValue[Scale_Rising]);
 		tmr_channel_value_set(TMR3, TMR_SELECT_CHANNEL_3, ScaleValue[Scale_Rising]/2);
 		delay_ms(500);
-
-  }
+	}
 }

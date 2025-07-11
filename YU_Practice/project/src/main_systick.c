@@ -124,7 +124,7 @@ int main(void)
 
 	  /* config systick clock source */
 	
-
+ 
 	//총 288Mhz를 가지고 움직임!!!
   systick_clock_source_config(SYSTICK_CLOCK_SOURCE_AHBCLK_NODIV);
 
