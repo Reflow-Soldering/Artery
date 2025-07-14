@@ -54,7 +54,6 @@ int main(void)
 
 	/* initialize key */
 	//1. 초기화
-	//LED Blue 및 TMR3리셋
 
 	//버스연결 - TMR3, PORTB -> GPIOB 0와 Timer3사용
 	crm_periph_clock_enable(CRM_GPIOB_PERIPH_CLOCK,TRUE);    //GPIOB Bus

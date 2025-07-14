@@ -87,7 +87,7 @@ gpio_pin_mux_config(GPIOB, GPIO_PINS_SOURCE5, GPIO_MUX_2);
 
 //TMR3 CH2 configuration
 //timer3 √ ±‚»≠
-//5Hz
+
 tmr_base_init(TMR3, PWM_Period, 0x200); //288MHz
 
 
