@@ -49,8 +49,8 @@
 
    레지스터 관련 내용은 주석으로 달았습니다. main문에서 확인하시길 바랍니다.
 
-6. Timer Polling(파일명 : **main_timer_led.c**)
-7. Timer Interrupt(파일명 : **main_timer_int_led.c**)
+5. Timer Polling(파일명 : **main_timer_led.c**)
+6. Timer Interrupt(파일명 : **main_timer_int_led.c**)
    
    1초마다 빨강 LED가 On/Off되는 파일입니다. 완전히 1초가 되지 않습니다.
 
@@ -67,3 +67,34 @@
    main에서는 Flag 변수를 확인하여 초기화 하고, GPIO상태를 확인하여 On/Off합니다.
 
    솔직히 TMR1하고 TMR10이라고 왜 써져있는지 모르겠습니다. 같이 쓰는거려나...
+
+7. Timer PWM LED(파일명 : **main_tmr_pwm_led.c**)
+
+   PWM을 이용한 밝기 제어입니다.
+   
+   RGB중 Blue만 사용했습니다. Timer3의 2번 채널로 출력을 사용하여 제어했습니다.
+
+   자세한 사항은 Reference Manual의 Timer항목 참고 바랍니다.
+
+9. Timer PWM Scale(파일명 : **main_tmr_pwm_scale_sound.c**)
+
+   PWM을 이용한 음계 설정입니다. GPIOB의 0을 Timer3의 3번 채널로 사용하여 출력했습니다 -> 2번 채널은 LED이기 때문에!
+
+   주파수는 계산기에서 참고하고 배열처리 했습니다.
+
+   도-레-미-파-솔-라-시-도 순으로 1초가 울렸다가 0.5초 멈추고 완전히 끝나면 while문에서 무한으로 루프를 돌렸으니
+
+   테스트용으로만 사용 바랍니다. 저는 인트로 용으로 사용할겁니다.
+
+   **가장 중요한 것은 구동할 부저가 무조건 수동 부저(내부 회로 없는 부저)여야 합니다.**
+
+   **능동부저(내부 회로 내장)의 경우 신호만 연결하면 지정된 소리가 나기 때문입니다.**
+
+11. USART Printf(파일명 : **main_usart_printf.c**)
+    정확하게는 USART기능에서 UART(비동기 통신)한 내용입니다.
+
+    printf만 있는 이유는 scanf함수를 구동할 경우 입력될 때까지 무한정 대기이기 때문에,
+
+    다른 함수를 실행할 수 없습니다.
+
+    또한 반드시 printf를 쓰기 위해서 Artery MCU의 HAL 함수를 retartget하여야 합니다.
